@@ -43,7 +43,7 @@ This project implements a service based on FastAPI for parsing the number of lis
    ```
    
 3. After the containers are built, the application will be available at:
-```
+```bash
 http://localhost:8000
 ```
 
@@ -57,15 +57,13 @@ Adds a new search query and region for monitoring.
 
 Example Request:
 
-```
-bash
+```bash
 curl -X POST "http://localhost:8000/add/" -d "query=iphone 13&region=kaliningrad"
 ```
 
 Example Response:
 
-```
-json
+```json
 {
   "id": 1
 }
@@ -78,15 +76,13 @@ GET /stat/{id}
 Returns statistics on the number of listings for the specified query.
 
 Example Request:
-```
-bash
+```bash
 curl -X GET "http://localhost:8000/stat/1"
 ```
 
 Example Response:
 
-```
-json
+```json
 {
   "query": "iphone 13",
   "region": "kaliningrad",
