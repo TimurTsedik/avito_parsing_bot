@@ -30,18 +30,20 @@ This project implements a service based on FastAPI for parsing the number of lis
 
 1. Clone the repository to your local machine:
 
-   ```bash
+   ```
+   bash
    git clone https://github.com/TimurTsedik/avito_parsing_bot
    cd avito-parser
    ```
    
 2. Build and start the containers using Docker Compose:
-   ```bash
+   ```
+   bash
    docker-compose up --build
    ```
    
 3. After the containers are built, the application will be available at:
-```bash
+```
 http://localhost:8000
 ```
 
@@ -55,13 +57,15 @@ Adds a new search query and region for monitoring.
 
 Example Request:
 
-```bash
+```
+bash
 curl -X POST "http://localhost:8000/add/" -d "query=iphone 13&region=kaliningrad"
 ```
 
 Example Response:
 
-```json
+```
+json
 {
   "id": 1
 }
