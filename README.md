@@ -105,7 +105,7 @@ Disclaimer
 For successful page parsing, it is important to ensure that chromedriver is compatible with your processor architecture (e.g., ARM64 for Apple Silicon). Using Docker provides environment isolation and simplifies the deployment process
 
 
-## Approach fot hidden API:
+## Approach for hidden API:
 
 ```
 import requests
