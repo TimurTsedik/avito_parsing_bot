@@ -1,0 +1,19 @@
+services:
+  web:
+    build: .
+    volumes:
+      - .:/app
+    environment:
+      - DISPLAY=:99
+    depends_on:
+      - chrome
+    links:
+      - chrome
+    ports:
+      - "8000:8000"
+
+  chrome:
+    image: seleniarm/standalone-chromium:latest
+    shm_size: 2gb
+    ports:
+      - "4444:4444"
