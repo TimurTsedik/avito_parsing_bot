@@ -1,87 +1,88 @@
 # Avito Parser with FastAPI and Selenium
 
-## Описание
+## Description
 
-Этот проект реализует сервис на основе FastAPI для парсинга количества объявлений на сайте Avito по заданным поисковым запросам и регионам. Сервис использует Selenium для парсинга страниц и SQLAlchemy для работы с базой данных. Проект также использует Docker и Docker Compose для контейнеризации.
+This project implements a service based on FastAPI for parsing the number of listings on the Avito website by specified search queries and regions. The service uses Selenium for page parsing and SQLAlchemy for working with the database. The project also uses Docker and Docker Compose for containerization.
 
-## Основные функции
+## Key Features
 
-- **Добавление поискового запроса**: Через эндпоинт `/add/` можно добавить новый поисковый запрос и регион для мониторинга количества объявлений.
-- **Получение статистики**: Через эндпоинт `/stat/{id}` можно получить статистику по количеству объявлений за определенный период времени.
-- **Планировщик задач**: Сервис автоматически обновляет количество объявлений для заданных запросов с использованием планировщика APScheduler.
+- **Adding a Search Query**: Through the `/add/` endpoint, you can add a new search query and region to monitor the number of listings.
+- **Getting Statistics**: Through the `/stat/{id}` endpoint, you can get statistics on the number of listings over a certain period.
+- **Task Scheduler**: The service automatically updates the number of listings for specified queries using the APScheduler.
 
-## Структура проекта
+## Project Structure
 
-- `main.py`: Основной файл приложения FastAPI.
-- `models.py`: Определение моделей данных с использованием SQLAlchemy.
-- `database.py`: Настройки подключения к базе данных.
-- `parsers.py`: Функции парсинга страниц с использованием Selenium.
-- `scheduler.py`: Настройки и запуск планировщика задач.
-- `Dockerfile`: Файл для сборки Docker-образа приложения.
-- `docker-compose.yml`: Файл для управления контейнерами с использованием Docker Compose.
+- `main.py`: The main FastAPI application file.
+- `models.py`: Defines data models using SQLAlchemy.
+- `database.py`: Database connection settings.
+- `parsers.py`: Functions for parsing pages using Selenium.
+- `scheduler.py`: Task scheduler configuration and startup.
+- `Dockerfile`: File for building the Docker image of the application.
+- `docker-compose.yml`: File for managing containers using Docker Compose.
 
-## Установка и запуск
+## Installation and Launch
 
-### Предварительные требования
+### Prerequisites
 
-- Docker и Docker Compose должны быть установлены на вашей машине.
+- Docker and Docker Compose must be installed on your machine.
 
-### Запуск проекта
+### Launching the Project
 
-1. Клонируйте репозиторий на вашу локальную машину:
+1. Clone the repository to your local machine:
 
    ```bash
    git clone https://github.com/your-username/avito-parser.git
    cd avito-parser
-
-2. Постройте и запустите контейнеры с помощью Docker Compose:
-
-   ```bash
-    docker-compose up --build
    ```
    
-3. После сборки контейнеров, приложение будет доступно по адресу:
-
+2. Build and start the containers using Docker Compose:
    ```bash
-   http://localhost:8000
+   docker-compose up --build
    ```
    
-4. Использование API
+3. After the containers are built, the application will be available at:
+```bash
+http://localhost:8000
+```
 
-Добавление нового запроса
+## Using the API
+
+Adding a New Query
+```
 POST /add/
+```
+Adds a new search query and region for monitoring.
 
-Добавляет новый поисковый запрос и регион для отслеживания.
-
-Пример запроса:
+Example Request:
 
 ```bash
 curl -X POST "http://localhost:8000/add/" -d "query=iphone 13&region=kaliningrad"
 ```
 
-Пример ответа:
+Example Response:
 
 ```json
 {
   "id": 1
 }
-
 ```
 
-Получение статистики
+Getting Statistics
+```
 GET /stat/{id}
+```
+Returns statistics on the number of listings for the specified query.
 
-Возвращает статистику по количеству объявлений для заданного запроса.
-
-Пример запроса:
-
-```bash
+Example Request:
+```
+bash
 curl -X GET "http://localhost:8000/stat/1"
 ```
 
-Пример ответа:
+Example Response:
 
-```json
+```
+json
 {
   "query": "iphone 13",
   "region": "kaliningrad",
@@ -94,17 +95,13 @@ curl -X GET "http://localhost:8000/stat/1"
   ]
 }
 ```
+## Technical Details
 
-## Технические детали
+FastAPI: The main web framework for creating the API.
+SQLAlchemy: Used for interacting with the database.
+Selenium: Used for web page parsing.
+Gunicorn: WSGI server for running FastAPI in production.
+APScheduler: Task scheduler for periodically updating data.
+Disclaimer
 
-FastAPI: Основной веб-фреймворк для создания API.
-SQLAlchemy: Используется для взаимодействия с базой данных.
-Selenium: Используется для парсинга веб-страниц.
-Gunicorn: WSGI сервер для запуска FastAPI в продакшене.
-APScheduler: Планировщик задач для периодического обновления данных.
-
-
-## Disclaimer
-
-Для успешного парсинга страниц важно убедиться, что chromedriver совместим с архитектурой вашего процессора (например, ARM64 для Apple Silicon).
-Использование Docker обеспечивает изоляцию окружения и упрощает развертывание приложения.
+For successful page parsing, it is important to ensure that chromedriver is compatible with your processor architecture (e.g., ARM64 for Apple Silicon). Using Docker provides environment isolation and simplifies the deployment process
