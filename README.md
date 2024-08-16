@@ -103,3 +103,29 @@ APScheduler: Task scheduler for periodically updating data.
 Disclaimer
 
 For successful page parsing, it is important to ensure that chromedriver is compatible with your processor architecture (e.g., ARM64 for Apple Silicon). Using Docker provides environment isolation and simplifies the deployment process
+
+
+## Approach fot hidden API:
+
+import requests
+```
+url = "https://m.avito.ru/api/11/items"
+params = {
+    "key": "af0deccbgcgidddjgnvljitntccdduijhdinfgjgfjir",
+    "localPriority": 0,
+    "locationId": 630090,
+    "query": "playstation",
+    "page": 1,
+    "lastStamp": 1723824960,
+    "display": "list",
+    "limit": 25,
+    "pageId": "H4sIAAAAAAAA_wTAAQpCIQwG4LvsBO3JA_13mDBEUTKJTTOiu78v4sBPwQyyYfF5z2O-EknF6UMQBYO-JArHoNWL-aLjnfT85FvtvNo-3GNGa8ttkv8VAAD__zicsBdPAAAA",
+    "presentationType": "serp"
+}
+
+response = requests.get(url, params=params)
+data = response.json()
+
+# Print the JSON response
+print(data)
+```
