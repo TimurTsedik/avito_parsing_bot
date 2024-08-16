@@ -106,9 +106,9 @@ For successful page parsing, it is important to ensure that chromedriver is comp
 
 
 ## Approach fot hidden API:
-
-import requests
 ```
+import requests
+
 url = "https://m.avito.ru/api/11/items"
 params = {
     "key": "af0deccbgcgidddjgnvljitntccdduijhdinfgjgfjir",
