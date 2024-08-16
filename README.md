@@ -31,7 +31,7 @@ This project implements a service based on FastAPI for parsing the number of lis
 1. Clone the repository to your local machine:
 
    ```bash
-   git clone https://github.com/your-username/avito-parser.git
+   git clone https://github.com/TimurTsedik/avito_parsing_bot
    cd avito-parser
    ```
    
